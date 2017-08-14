@@ -21,7 +21,7 @@ SET row_security = off;
 -- Name: contactholder; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE contactholder WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
+--CREATE DATABASE contactholder WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
 
 
 ALTER DATABASE contactholder OWNER TO postgres;
