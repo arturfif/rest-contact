@@ -3,6 +3,5 @@ jdk: oraclejdk8
 services:
   - postgresql
 before_script:
-  - cp contactholder.sql
   - psql -c 'create database contactholder;' -U postgres
   - psql -f contactholder.sql -U postgres -d contactholder
