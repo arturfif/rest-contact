@@ -50,16 +50,21 @@ public class ContactController {
 
         List<Contact> result = new ArrayList<>();
 
-        List<Contact> dbContacts;
         int page = 0;
 
         do {
-            dbContacts = repository.findAll(new PageRequest(page, SIZE)).getContent();
+            List<Contact> dbContacts = repository.findAll(new PageRequest(page, SIZE)).getContent();
             if (dbContacts.isEmpty()) break;
 
-            dbContacts.parallelStream()
-                    .filter(contact -> contact.getName() == null ||
-                        !negatePattern.matcher(contact.getName()).matches()).forEach(result::add);
+            dbContacts.parallelStream().forEach(contact -> {
+                if (contact.getName() == null || !negatePattern.matcher(contact.getName()).matches()) {
+                    result.add(contact);
+                } else {
+                    contact = null; // there is no more need for this object
+                }
+            });
+            System.gc();
+
             page++;
         } while (true);
 
